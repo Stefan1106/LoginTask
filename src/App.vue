@@ -15,7 +15,6 @@
           @input="validatePassword"
           required
         />
-        <!-- Display password strength message -->
         <div v-if="passwordScoreMessage" class="score-message">
           Password strength: {{ passwordScoreMessage }}
         </div>
@@ -29,7 +28,6 @@
     </form>
   </div>
 
-  <!-- Password requirements displayed horizontally below the login container -->
   <div v-if="passwordRequirements" class="requirements-container">
     <div :class="{ valid: passwordLengthValid, invalid: !passwordLengthValid }">
       <span v-if="passwordLengthValid">&#x2714;</span>
@@ -138,7 +136,6 @@ export default {
       }
     },
     validatePassword() {
-      // Reset errors and update validity
       this.passwordErrors = [];
 
       // Check each validation rule and collect errors
@@ -150,8 +147,6 @@ export default {
       if (this.hasConsecutiveLetters) this.passwordErrors.push("Avoid using sequences of consecutive characters (e.g., qwerty).");
       if (this.isSimilarToUsername) this.passwordErrors.push("Password should not be similar to the username.");
       if (this.isCommonPassword) this.passwordErrors.push("Avoid using common passwords.");
-
-      // Update password validity
       this.passwordValid = this.passwordErrors.length === 0;
 
       // Update password strength score
@@ -184,14 +179,14 @@ export default {
       for (let char of password) {
         charCounts[char] = (charCounts[char] || 0) + 1;
       }
-      return Object.values(charCounts).some(count => count > 2); // Deduct if any character repeats more than twice
+      return Object.values(charCounts).some(count => count > 2); 
     },
     hasConsecutiveAscii(password) {
       for (let i = 0; i < password.length - 3; i++) {
         const charCodes = [];
         for (let j = i; j < i + 4; j++) {
           // Convert each character to lowercase and then to ASCII code to avoid case sensitivity
-          charCodes.push(password.charCodeAt(j) | 32); // Bitwise OR with 32 converts uppercase to lowercase
+          charCodes.push(password.charCodeAt(j) | 32);
         }
         if (this.isConsecutiveAscii(charCodes)) {
           return true;
