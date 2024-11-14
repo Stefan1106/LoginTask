@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # task-1
 
 ## Project setup
@@ -22,3 +23,7 @@ yarn lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+=======
+# LoginTask
+task 1
+>>>>>>> a17ca77c7d9aacf74283503e398398443a36097d
